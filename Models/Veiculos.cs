@@ -21,7 +21,7 @@ namespace WebRazorCSharp.Models
         public short Fabricacao { get; set; }
         public string Cor { get; set; }
         public byte Combustivel { get; set; }
-        public bool CambioAT { get; set; }
+        public bool Automatico { get; set; }
         public decimal Valor { get; set; }
         public bool Ativo { get; set; }
 
@@ -30,7 +30,7 @@ namespace WebRazorCSharp.Models
         }
 
         public Veiculos(int id, string nome, string modelo, short ano, short fabricacao, string cor,
-            byte combustivel, bool cambioAT, decimal valor, bool ativo)
+            byte combustivel, bool automatico, decimal valor, bool ativo)
         {
             Id = id;
             Nome = nome;
@@ -39,7 +39,7 @@ namespace WebRazorCSharp.Models
             Fabricacao = fabricacao;
             Cor = cor;
             Combustivel = combustivel;
-            CambioAT = cambioAT;
+            Automatico = automatico;
             Valor = valor;
             Ativo = ativo;
         }
@@ -100,8 +100,7 @@ namespace WebRazorCSharp.Models
             }
             else
             {
-                sql = "UPDATE tb_Veiculos SET nome=@nome, modelo=@modelo, ano=@ano, fabricacao=@fabricacao, cor=@cor" +
-                    "combustivel=@combustivel, automatico=@automatico, valor=@valor, ativo=@ativo WHERE id=" + Id;
+                sql = @"UPDATE tb_Veiculos SET nome=@nome, modelo=@modelo, ano=@ano, fabricacao=@fabricacao, cor=@cor, combustivel=@combustivel, automatico=@automatico, valor=@valor, ativo=@ativo WHERE id=" + Id;
             }
 
             try
@@ -117,7 +116,7 @@ namespace WebRazorCSharp.Models
                         cmd.Parameters.AddWithValue("@fabricacao", Fabricacao);
                         cmd.Parameters.AddWithValue("@cor", Cor);
                         cmd.Parameters.AddWithValue("@combustivel", Combustivel);
-                        cmd.Parameters.AddWithValue("@automatico", CambioAT);
+                        cmd.Parameters.AddWithValue("@automatico", Automatico);
                         cmd.Parameters.AddWithValue("@valor", Valor);
                         cmd.Parameters.AddWithValue("@ativo", Ativo);
 
@@ -135,7 +134,8 @@ namespace WebRazorCSharp.Models
         // RETORNA DADOS NA PAGINA DE EDIÇÃO
         public void GetVeiculo(int id)
         {
-            var sql = "SELECT nome, modelo, ano, fabricacao, cor, combustivel, automatico, valor, ativo FROM tb_Veiculos WHERE id=" + id;
+            var sql = "SELECT nome, modelo, ano, fabricacao, cor, combustivel, automatico, " +
+                "valor, ativo FROM tb_Veiculos WHERE id=" + id;
 
             try
             {
@@ -157,9 +157,10 @@ namespace WebRazorCSharp.Models
                                     Fabricacao = Convert.ToInt16(dr["fabricacao"]);
                                     Cor = dr["cor"].ToString();
                                     Combustivel = Convert.ToByte(dr["combustivel"]);
-                                    CambioAT = Convert.ToBoolean(dr["automatico"]);
+                                    Automatico = Convert.ToBoolean(dr["automatico"]);
                                     Valor = Convert.ToDecimal(dr["valor"]);
                                     Ativo = Convert.ToBoolean(dr["ativo"]);
+
                                 }
                             }
                         }

@@ -21,7 +21,7 @@ namespace WebRazorCSharp.Controllers
         public ActionResult Alterar(int id)
         {
             ViewBag.Title = "Veiculos";
-            ViewBag.Message = "Editar veículo";
+            ViewBag.Message = "Editar veículo" + id;
 
             var veiculo = new Veiculos();
             veiculo.GetVeiculo(id);
@@ -35,21 +35,20 @@ namespace WebRazorCSharp.Controllers
         public void Salvar()
         {
             var veiculo = new Veiculos();
-            veiculo.Id = Convert.ToInt32("0" + Request["id"]);
+            veiculo.Id = Convert.ToInt32(Request["id"]);
             veiculo.Nome = Request["nome"];
             veiculo.Modelo = Request["modelo"];
             veiculo.Ano = Convert.ToInt16(Request["fabricacao"]);
             veiculo.Fabricacao = Convert.ToInt16(Request["fabricacao"]);
             veiculo.Cor = Request["cor"];
             veiculo.Combustivel = Convert.ToByte(Request["combustivel"]);
-            veiculo.CambioAT = false;
+            veiculo.Automatico = false;
             veiculo.Valor = Convert.ToDecimal(Request["valor"]);
             veiculo.Ativo = true;
 
             veiculo.Salvar();
 
-            Response.Redirect("/Home/Veiculo");
-         
+            Response.Redirect("/Home/Veiculo");                   
         }
 
     }
