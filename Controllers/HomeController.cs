@@ -14,7 +14,7 @@ namespace WebRazorCSharp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Veiculo()
         {
             ViewBag.Title = "Vende-se";
             ViewBag.Message = "Relação de veículos";

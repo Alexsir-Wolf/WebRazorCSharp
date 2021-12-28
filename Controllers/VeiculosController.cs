@@ -10,10 +10,22 @@ namespace WebRazorCSharp.Controllers
     public class VeiculosController : Controller
     {
         // GET: Veiculos
-        public ActionResult Veiculos()
+        public ActionResult Adicionar()
         {
             ViewBag.Title = "Veiculos";
-            ViewBag.Message = "Cadastro de veículos";
+            ViewBag.Message = "Adicionar veículo";
+
+            return View();
+        }
+
+        public ActionResult Alterar(int id)
+        {
+            ViewBag.Title = "Veiculos";
+            ViewBag.Message = "Editar veículo";
+
+            var veiculo = new Veiculos();
+            veiculo.GetVeiculo(id);
+            ViewBag.Veiculo = veiculo;
 
             return View();
         }
@@ -23,6 +35,7 @@ namespace WebRazorCSharp.Controllers
         public void Salvar()
         {
             var veiculo = new Veiculos();
+            veiculo.Id = Convert.ToInt32("0" + Request["id"]);
             veiculo.Nome = Request["nome"];
             veiculo.Modelo = Request["modelo"];
             veiculo.Ano = Convert.ToInt16(Request["fabricacao"]);
@@ -35,7 +48,7 @@ namespace WebRazorCSharp.Controllers
 
             veiculo.Salvar();
 
-            Response.Redirect("/Home/About");
+            Response.Redirect("/Home/Veiculo");
          
         }
 

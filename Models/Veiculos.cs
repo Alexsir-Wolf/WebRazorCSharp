@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
+using System.Data.SqlClient;
 namespace WebRazorCSharp.Models
 {
     public class Veiculos
     {
-        // coneção com DB
+        //CONEXÃO COM BANCO DE DADOS
         private readonly static string _connection = @"Data Source=(localdb)\MSSQLLocalDB;
             Initial Catalog = AgenciaAuto; Integrated Security = True; 
         Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;
@@ -88,10 +88,22 @@ namespace WebRazorCSharp.Models
             return listaCarros;
         }
 
+
+        //SALVAR NOVO VEICULO NO BANCO DE DADOS
         public void Salvar()
         {
-            var sql = "INSERT INTO tb_Veiculos (nome, modelo, ano, fabricacao, cor, combustivel, automatico, valor, ativo) " +
-                      "VALUES (@nome, @modelo, @ano, @fabricacao, @cor, @combustivel, @automatico, @valor, @ativo)";
+            var sql = "";
+            if (Id == 0)
+            {
+                sql = "INSERT INTO tb_Veiculos (nome, modelo, ano, fabricacao, cor, combustivel, automatico, valor, ativo) " +
+                     "VALUES (@nome, @modelo, @ano, @fabricacao, @cor, @combustivel, @automatico, @valor, @ativo)";
+            }
+            else
+            {
+                sql = "UPDATE tb_Veiculos SET nome=@nome, modelo=@modelo, ano=@ano, fabricacao=@fabricacao, cor=@cor" +
+                    "combustivel=@combustivel, automatico=@automatico, valor=@valor, ativo=@ativo WHERE id=" + Id;
+            }
+
             try
             {
                 using (var cn = new SqlConnection(_connection))
@@ -120,6 +132,46 @@ namespace WebRazorCSharp.Models
 
         }
 
+        // RETORNA DADOS NA PAGINA DE EDIÇÃO
+        public void GetVeiculo(int id)
+        {
+            var sql = "SELECT nome, modelo, ano, fabricacao, cor, combustivel, automatico, valor, ativo FROM tb_Veiculos WHERE id=" + id;
+
+            try
+            {
+                using (var cn = new SqlConnection(_connection))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(sql, cn))
+                    {                   
+                        using (var dr = cmd.ExecuteReader())
+                        {
+                            if (dr.HasRows)
+                            {
+                                if (dr.Read())
+                                {
+                                    Id = id;
+                                    Nome = dr["nome"].ToString();
+                                    Modelo = dr["modelo"].ToString();
+                                    Ano = Convert.ToInt16(dr["ano"]);
+                                    Fabricacao = Convert.ToInt16(dr["fabricacao"]);
+                                    Cor = dr["cor"].ToString();
+                                    Combustivel = Convert.ToByte(dr["combustivel"]);
+                                    CambioAT = Convert.ToBoolean(dr["automatico"]);
+                                    Valor = Convert.ToDecimal(dr["valor"]);
+                                    Ativo = Convert.ToBoolean(dr["ativo"]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception erro)
+            {
+                Nome = "Falha: " + erro.Message;
+                Console.WriteLine("Falha: " + erro.Message);
+            }
+        }
 
 
 

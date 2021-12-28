@@ -16,17 +16,26 @@ namespace WebRazorCSharp
 
             //ROTA PARA SALVAR VEICULOS NO BANCO DE DADOS
             routes.MapRoute(
-                "VeiculosSalvar",
-                "/veiculos/salvar",
-                new { controller = "Veiculos", action = "salvar" }
+                "VeiculoAdicionar",
+                "veiculos/adicionar",
+                new { controller = "Veiculos", action = "Adicionar" }
                 );
 
-            //ROTA PARA PAGINA VEICULOS.CSHTML
+
+            //ROTA PARA ALTERAR VEICULO
             routes.MapRoute(
-                "Veiculos",
+                "VeiculoEditar",
+                "Veiculos/Alterar/:id",
+                new { controller = "Veiculos", action = "Alterar", id = 0 }
+                );
+
+
+            //ROTA PARA PAGINA VEICULOS
+            routes.MapRoute(
+                "VeiculosHome",
                 "Veiculos",
                 new { controller = "Veiculos", action = "Veiculos" }
-                );
+                );  
 
             //ROTA PADRÃO, SEMPRE POR ULTIMO
             routes.MapRoute(
