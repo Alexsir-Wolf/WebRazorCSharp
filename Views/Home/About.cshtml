@@ -1,7 +1,34 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
+﻿<h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
+
+<p><a class="btn btn-default" href="/Veiculos">Adicionar &raquo;</a></p>
+<br/>
+
+<table>
+    <tr>
+        <th>Marca / Fabricante</th>
+        <th>Modelo</th>
+        <th>Ano<br/>Fabricação</th>
+        <th>Cor</th>
+        <th>Combustível</th>
+        <th>Cambio Automático</th>
+        <th>Valor</th>
+    </tr>
+
+    @foreach(var item in ViewBag.Lista)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Modelo</td>
+                    <td>@item.Fabricacao</td>
+                    <td>@item.Cor</td>
+                    <td>@item.Combustivel</td>
+                    <td>@item.CambioAT</td>              
+                    <td>@item.Valor</td>                  
+                </tr>
+            }
+</table>
+
+
 
 <p>Use this area to provide additional information.</p>

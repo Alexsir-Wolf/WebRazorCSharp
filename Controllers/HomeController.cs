@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebRazorCSharp.Models;
 
 namespace WebRazorCSharp.Controllers
 {
@@ -15,14 +16,19 @@ namespace WebRazorCSharp.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Title = "Vende-se";
+            ViewBag.Message = "Relação de veículos";
+
+            var lista = Veiculos.GetCarros();
+            ViewBag.Lista = lista;
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Title = "Contato";
+            ViewBag.Message = "Web page contatos.";
 
             return View();
         }
