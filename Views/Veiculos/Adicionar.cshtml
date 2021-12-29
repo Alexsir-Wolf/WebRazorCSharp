@@ -1,44 +1,62 @@
-﻿<h2>@ViewBag.Title</h2>
-<h2>@ViewBag.Message</h2>
+﻿<h2 class="text-center">@ViewBag.Message</h2>
 
-<form action="/veiculos/salvar" method="post">
-    <div>
-        <label for="nome">Marca:</label>
-        <input type="text" id="nome" name="nome" />
-    </div>
+<div class="centralizar">
+    <form action="/veiculos/salvar" method="post" class="text-right">
 
-    <div>
-        <label for="modelo">Modelo:</label>
-        <input type="text" id="modelo" name="modelo" />
-    </div>
+        <div>
+            <label for="nome" class="col-sm-4 col-form-label espacamento">Marca:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="nome" name="nome" />
+            </div>
+        </div>
 
-    <div>
-        <label for="fabricacao">Ano:</label>
-        <input type="text" id="fabricacao" name="fabricacao" />
-    </div>
+        <div>
+            <label for="modelo" class="col-sm-4 col-form-label espacamento">Modelo:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="modelo" name="modelo" />
+            </div>
+        </div>
 
-    <div>
-        <label for="cor">Cor:</label>
-        <input type="text" id="cor" name="cor" />
-    </div>
+        <div>
+            <label for="fabricacao" class="col-sm-4 col-form-label espacamento">Ano:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="fabricacao" name="fabricacao" />
+            </div>
+        </div>
 
-    <div>
-        <label for="combustivel">Combustivel:</label>
-        <input type="text" id="combustivel" name="Combustivel" />
-    </div>
+        <div>
+            <label for="cor" class="col-sm-4 col-form-label espacamento">Cor:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="cor" name="cor" />
+            </div>
+        </div>
 
-    <div>
-        <label for="automatico">Cambio AT:</label>
-        <input type="text" id="automatico" name="automatico" />
-    </div>
+        <div>
+            <label for="combustivel" class="col-sm-4 col-form-label espacamento">Combustivel:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="combustivel" name="Combustivel" />
+            </div>
+        </div>
 
-    <div>
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor" name="valor" />
-    </div>
+        <div>
+            <label for="automatico" class="col-sm-4 col-form-label espacamento">Transmissão:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="automatico" name="automatico" />
+            </div>
+        </div>
 
-    <br />
-    <div class="button">
-        <button type="submit">Salvar</button>
-    </div>
-</form>
+        <div>
+            <label for="valor" class="col-sm-4 col-form-label espacamento">Valor:</label>
+            <div class="col-sm-8">
+                <input class="form-control" type="text" id="valor" name="valor" />
+            </div>
+        </div>
+
+
+        <div class="button">
+            <button class="btn btn-success" type="submit">Salvar</button>
+        </div>
+    </form>
+</div>
+
+

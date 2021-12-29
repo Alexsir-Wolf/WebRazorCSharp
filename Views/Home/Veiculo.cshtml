@@ -1,18 +1,19 @@
-﻿<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
+﻿<h3 class="text-center">@ViewBag.Message</h3>
 
-<p><a class="btn btn-default" href="/Veiculos/Adicionar">Adicionar &raquo;</a></p>
+<p><a class="btn btn-success" href="/Veiculos/Adicionar">Adicionar &raquo;</a></p>
 <br/>
 
-<table>
-    <tr>
-        <th>Marca / Fabricante</th>
-        <th>Modelo</th>
-        <th>Ano<br/>Fabricação</th>
-        <th>Cor</th>
-        <th>Combustível</th>
-        <th>Cambio Automático</th>
-        <th>Valor</th>
+<table class="table table table-success table-striped table table-hover text-center">
+    <tr class="table table-bordered">
+        <th class="text-center">Marca / Fabricante</th>
+        <th class="text-center">Modelo</th>
+        <th class="text-center">Ano<br/>Fabricação</th>
+        <th class="text-center">Cor</th>
+        <th class="text-center">Combustível</th>
+        <th class="text-center">Transmissão</th>
+        <th class="text-center">Valor</th>
+        <th></th>
+        <th></th>
     </tr>
 
     @foreach(var item in ViewBag.Lista)
@@ -32,4 +33,4 @@
 
 
 
-<p>Use this area to provide additional information.</p>
+<p>Crud TESTE</p>
