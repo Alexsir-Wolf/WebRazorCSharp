@@ -170,6 +170,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Veiculos\Adicionar.cshtml" />
     <Content Include="Views\Veiculos\Alterar.cshtml" />
+    <Content Include="Views\Veiculos\Excluir.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

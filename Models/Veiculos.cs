@@ -131,6 +131,31 @@ namespace WebRazorCSharp.Models
 
         }
 
+        // DELETAR VEICULO NO BANCO DE DADOS
+        public void Excluir()
+        {
+            var sql = "DELETE FROM tb_Veiculos WHERE id=" + Id;
+
+            try
+            {
+                using (var cn = new SqlConnection(_connection))
+                {
+                    cn.Open();
+                    using (var cmd = new SqlCommand(sql, cn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch(Exception erro)
+            {
+                Console.WriteLine("Falha " + erro.Message);
+            }
+
+        }
+
+
+
         // RETORNA DADOS NA PAGINA DE EDIÇÃO
         public void GetVeiculo(int id)
         {

@@ -21,7 +21,18 @@ namespace WebRazorCSharp.Controllers
         public ActionResult Alterar(int id)
         {
             ViewBag.Title = "Veiculos";
-            ViewBag.Message = "Editar veículo" + id;
+            ViewBag.Message = "Editar veículo";
+
+            var veiculo = new Veiculos();
+            veiculo.GetVeiculo(id);
+            ViewBag.Veiculo = veiculo;
+
+            return View();
+        }
+        public ActionResult Excluir(int id)
+        {
+            ViewBag.Title = "Veiculos";
+            ViewBag.Message = "Excluir veículo " + id;
 
             var veiculo = new Veiculos();
             veiculo.GetVeiculo(id);
@@ -49,6 +60,17 @@ namespace WebRazorCSharp.Controllers
             veiculo.Salvar();
 
             Response.Redirect("/Home/Veiculo");                   
+        }
+
+        [HttpPost]
+        public void Excluir()
+        {
+            var veiculo = new Veiculos();
+            veiculo.Id = Convert.ToInt32("0" + Request["id"]);
+
+            veiculo.Excluir();
+
+            Response.Redirect("/Home/Veiculo");
         }
 
     }

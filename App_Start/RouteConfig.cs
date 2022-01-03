@@ -28,6 +28,13 @@ namespace WebRazorCSharp
                 "Veiculos/Alterar/:id",
                 new { controller = "Veiculos", action = "Alterar", id = 0 }
                 );
+            
+            //ROTA PARA ECLUIR VEICULO
+            routes.MapRoute(
+                "VeiculoExcluir ",
+                "Veiculos/Excluir/:id",
+                new { controller = "Veiculos", action = "Excluir", id = 0 }
+                );
 
 
             //ROTA PARA PAGINA VEICULOS

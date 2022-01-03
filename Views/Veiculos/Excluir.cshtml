@@ -5,61 +5,61 @@
 <h2 class="text-center">@ViewBag.Message</h2>
 
 <div class="centralizar">
-    <form action="/veiculos/salvar" method="post" class="text-right">
+    <form action="/veiculos/excluir" method="post" class="text-right">
 
         <div>
             <input type="hidden" id="id" name="id" value="@veiculo.Id" />
             <label for="nome" class="col-sm-4 col-form-label espacamento">Marca:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="nome" name="nome" value="@veiculo.Nome" />
+                <input readonly class="form-control" type="text" id="nome" name="nome" value="@veiculo.Nome" />
             </div>
         </div>
 
         <div>
             <label for="modelo" class="col-sm-4 col-form-label espacamento">Modelo:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="modelo" name="modelo" value="@veiculo.Modelo"/>
+                <input readonly class="form-control" type="text" id="modelo" name="modelo" value="@veiculo.Modelo"/>
             </div>
         </div>
 
         <div>
             <label for="fabricacao" class="col-sm-4 col-form-label espacamento">Ano:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="fabricacao" name="fabricacao" value="@veiculo.Fabricacao"/>
+                <input readonly class="form-control" type="text" id="fabricacao" name="fabricacao" value="@veiculo.Fabricacao"/>
             </div>
         </div>
 
         <div>
             <label for="cor" class="col-sm-4 col-form-label espacamento">Cor:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="cor" name="cor" value="@veiculo.Cor"/>
+                <input readonly class="form-control" type="text" id="cor" name="cor" value="@veiculo.Cor"/>
             </div>
         </div>
 
         <div>
             <label for="combustivel" class="col-sm-4 col-form-label espacamento">Combustivel:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="combustivel" name="Combustivel" value="@veiculo.Combustivel"/>
+                <input readonly class="form-control" type="text" id="combustivel" name="Combustivel" value="@veiculo.Combustivel"/>
             </div>
         </div>
 
         <div>
             <label for="automatico" class="col-sm-4 col-form-label espacamento">Transmissão:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="automatico" name="automatico" value="@veiculo.Automatico"/>
+                <input readonly class="form-control" type="text" id="automatico" name="automatico" value="@veiculo.Automatico"/>
             </div>
         </div>
 
         <div>
             <label for="valor" class="col-sm-4 col-form-label espacamento">Valor:</label>
             <div class="col-sm-8">
-                <input class="form-control" type="text" id="valor" name="valor" value="@veiculo.Valor"/>
+                <input readonly class="form-control" type="text" id="valor" name="valor" value="@veiculo.Valor"/>
             </div>
         </div>
 
         <br />
-        <div class="buttonSave">
-            <button class="btn btn-success " type="submit">Salvar</button>
+        <div class="button">
+            <button class="btn btn-danger " type="submit">Excluir</button>
         </div>
     </form>
 </div>
