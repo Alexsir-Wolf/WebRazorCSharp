@@ -19,7 +19,7 @@ namespace WebRazorCSharp.Controllers
         }
 
         [HttpPost]
-        public void ChecarLogin()
+        public ActionResult ChecarLogin()
         {
             var usuario = new Usuario();
             usuario.Email = Request["EMAIL"];
@@ -28,13 +28,13 @@ namespace WebRazorCSharp.Controllers
             if (usuario.Login())
             {
                 Session["Autorizado"] = "OK";
-               // Session.Remove("Erro");
-                Response.Redirect("/Home/Index");
+                Session.Remove("Erro");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 Session["Erro"] = "Senha ou usuário inválidos.";
-                Response.Redirect("/Login/Index");
+                return RedirectToAction("Index", "Login");
             }
 
         }

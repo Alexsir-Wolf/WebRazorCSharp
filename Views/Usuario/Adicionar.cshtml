@@ -1,35 +1,39 @@
-﻿<h2 class="text-center">@ViewBag.Message</h2>
+﻿@model WebRazorCSharp.Models.Usuario
 
-<div class="centralizar">
-    <form action="/Usuario/salvar" method="post" class="text-right">
+<h2 class="text-center">@ViewBag.Message</h2>
 
-        <div>
-            <label for="nome" class="col-sm-4 col-form-label espacamento">Nome</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="nome" name="nome" />
-            </div>
+
+@using (Html.BeginForm("Salvar", "Usuario", FormMethod.Post, new { id = "formNovoUsuario", name = "formNovoUsuario" }))
+{
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Nome, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Nome, new { @class = "form-control", @placeholder = "Nome" })
+            @Html.ValidationMessageFor(v => v.Nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="modelo" class="col-sm-4 col-form-label espacamento">Email</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="Email" name="Email" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Email, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Email, new { @class = "form-control", @placeholder = "Email@email.com" })
+            @Html.ValidationMessageFor(v => v.Nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="modelo" class="col-sm-4 col-form-label espacamento">Senha</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="Senha" name="Senha" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Senha, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.PasswordFor(v => v.Senha, new { @class = "form-control", @placeholder = "Senha" })
+            @Html.ValidationMessageFor(v => v.Nome, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-
-        <br />
-        <div class="button">
-            <button class="btn btn-success " type="submit">Salvar</button>
-        </div>
-    </form>
-</div>
+    <br />
+    <div class="button text-center">
+        <button class="btn btn-success " type="submit">Salvar</button>
+    </div>
+}
 
 

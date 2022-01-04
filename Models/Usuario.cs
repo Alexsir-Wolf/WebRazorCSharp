@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 
 namespace WebRazorCSharp.Models
 {
     public class Usuario
-    {
-        //CONEXÃO COM BANCO DE DADOS
-        private readonly static string _connection = @"Data Source=(localdb)\MSSQLLocalDB;
-            Initial Catalog = AgenciaAuto; Integrated Security = True; 
-        Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;
-            ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+    {   
+        //CONNECTION STRING
+        private readonly static string _connection = WebConfigurationManager.ConnectionStrings
+            ["connect"].ConnectionString;
 
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Email { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Nome { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Senha { get; set; }
 
         public Usuario()

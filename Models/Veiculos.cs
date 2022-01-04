@@ -4,25 +4,53 @@ using System.Linq;
 using System.Web;
 
 using System.Data.SqlClient;
+using System.Web.Configuration;
+using System.ComponentModel.DataAnnotations;
+
 namespace WebRazorCSharp.Models
 {
     public class Veiculos
     {
-        //CONEXÃO COM BANCO DE DADOS
-        private readonly static string _connection = @"Data Source=(localdb)\MSSQLLocalDB;
-            Initial Catalog = AgenciaAuto; Integrated Security = True; 
-        Connect Timeout = 30; Encrypt=False;TrustServerCertificate=False;
-            ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        //CONNECTION STRING
+        private readonly static string _connection = WebConfigurationManager.ConnectionStrings
+            ["connect"].ConnectionString;
 
         public int Id { get; set; }
+
+        [Display(Name = "Marca")]
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Nome { get; set; }
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Modelo { get; set; }
+
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public short Ano { get; set; }
+
+        [Display(Name = "Ano de Fabricação")]
+        [Range (1950, 2022, ErrorMessage = "Ano deve estar entre {1} e {2}")]
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public short Fabricacao { get; set; }
+
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public string Cor { get; set; }
+
+
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public byte Combustivel { get; set; }
+
+        [Display(Name = "Transmissão")]
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public bool Automatico { get; set; }
+
+        [Range(0.01, 999999999.99, ErrorMessage = "O valor não pode ser menor que {1}")]
+        [Required(ErrorMessage = "Campo obrigatório.")]
         public decimal Valor { get; set; }
+
+
+       [Required(ErrorMessage = "Campo obrigatório.")]
         public bool Ativo { get; set; }
 
         public Veiculos()

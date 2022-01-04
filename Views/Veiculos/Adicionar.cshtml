@@ -1,61 +1,70 @@
-﻿<h2 class="text-center">@ViewBag.Message</h2>
+﻿@model WebRazorCSharp.Models.Veiculos
 
-<div class="centralizar">
-    <form action="/veiculos/salvar" method="post" class="text-right">
 
-        <div>
-            <label for="nome" class="col-sm-4 col-form-label espacamento">Marca:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="nome" name="nome" />
-            </div>
+<h2 class="text-center">@ViewBag.Message</h2>
+
+
+@using (Html.BeginForm("Salvar", "Veiculos", FormMethod.Post, new { id = "formVeiculosAdicionar", name = "formVeiculosAdicionar" }))
+{
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Nome, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Nome, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Nome, "", new {@class="text-danger"})
         </div>
+    </div>
 
-        <div>
-            <label for="modelo" class="col-sm-4 col-form-label espacamento">Modelo:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="modelo" name="modelo" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Modelo, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Modelo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Modelo, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="fabricacao" class="col-sm-4 col-form-label espacamento">Ano:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="fabricacao" name="fabricacao" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Fabricacao, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Fabricacao, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Fabricacao, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="cor" class="col-sm-4 col-form-label espacamento">Cor:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="cor" name="cor" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Cor, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Cor, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Cor, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="combustivel" class="col-sm-4 col-form-label espacamento">Combustivel:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="combustivel" name="Combustivel" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Combustivel, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Combustivel, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Combustivel, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="automatico" class="col-sm-4 col-form-label espacamento">Transmissão:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="automatico" name="automatico" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Automatico, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Automatico, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Automatico, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div>
-            <label for="valor" class="col-sm-4 col-form-label espacamento">Valor:</label>
-            <div class="col-sm-8">
-                <input class="form-control" type="text" id="valor" name="valor" />
-            </div>
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Valor, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Valor, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Valor, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="buttonSave">
-            <button class="btn btn-success " type="submit">Salvar</button>
-        </div>
-    </form>
-</div>
+    <div class="buttonSave text-center">
+        <button class="btn btn-success " type="submit">Salvar</button>
+    </div>
+}
 
 

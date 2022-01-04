@@ -17,19 +17,21 @@ namespace WebRazorCSharp.Controllers
             return View();
         }
 
-
         [HttpPost]
-        public void Salvar()
+        public ActionResult Salvar(Usuario usuario)
         {
-            var usuario = new Usuario();
-            usuario.Id = Convert.ToInt32(Request["id"]);
-            usuario.Nome = Request["Nome"];
-            usuario.Email = Request["email"];
-            usuario.Senha = Request["senha"];
+            if (ModelState.IsValid)
+            {
+                usuario.Salvar();
+                return RedirectToAction("veiculo", "Home");
+            }
+            else
+            {
+                ViewBag.Title = "usuário";
+                ViewBag.Message = "Adicionar usuário";
+                return View("Adicionar");
+            }
 
-            usuario.Salvar();
-
-            Response.Redirect("/login/index");
-        }
+        }       
     }
 }

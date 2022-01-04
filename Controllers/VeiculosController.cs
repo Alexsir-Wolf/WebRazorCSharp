@@ -43,24 +43,30 @@ namespace WebRazorCSharp.Controllers
 
 
         [HttpPost]
-        public void Salvar()
+        public ActionResult Salvar(Veiculos veiculos)
         {
-            var veiculo = new Veiculos();
-            veiculo.Id = Convert.ToInt32(Request["id"]);
-            veiculo.Nome = Request["nome"];
-            veiculo.Modelo = Request["modelo"];
-            veiculo.Ano = Convert.ToInt16(Request["fabricacao"]);
-            veiculo.Fabricacao = Convert.ToInt16(Request["fabricacao"]);
-            veiculo.Cor = Request["cor"];
-            veiculo.Combustivel = Convert.ToByte(Request["combustivel"]);
-            veiculo.Automatico = false;
-            veiculo.Valor = Convert.ToDecimal(Request["valor"]);
-            veiculo.Ativo = true;
-
-            veiculo.Salvar();
-
-            Response.Redirect("/Home/Veiculo");                   
+            if (ModelState.IsValid)
+            {
+                veiculos.Salvar();
+                return RedirectToAction("Veiculo", "Home");
+            }
+            else
+            {
+                ViewBag.Title = "Veículos";
+                if (Convert.ToInt32("0" + Request["id"]) == 0)
+                {
+                    ViewBag.Message = "Adicionar veículo";
+                    return View("Adicionar");
+                }
+                else
+                {
+                    ViewBag.veiculo = veiculos;
+                    ViewBag.Message = "Alterar veiculos" + veiculos.Id;
+                    return View("Alterar");
+                }
+            }
         }
+
 
         [HttpPost]
         public void Excluir()
