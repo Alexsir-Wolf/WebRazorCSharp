@@ -19,6 +19,22 @@ namespace WebRazorCSharp
                 "VeiculoAdicionar",
                 "veiculos/adicionar",
                 new { controller = "Veiculos", action = "Adicionar" }
+                );      
+
+
+            //ROTA PARA SALVAR USUARIOS NO BANCO DE DADOS
+            routes.MapRoute(
+                "UsuarioSalvar",
+                "Login/adicionar",
+                new { controller = "Usuario", action = "Salvar" }
+                );    
+            
+            
+            //ROTA PARA SALVAR USUARIOS NO BANCO DE DADOS
+            routes.MapRoute(
+                "UsuarioAdicionar",
+                "Usuario/Salvar",
+                new { controller = "Usuario", action = "Salvar" }
                 );
 
 
@@ -29,7 +45,7 @@ namespace WebRazorCSharp
                 new { controller = "Veiculos", action = "Alterar", id = 0 }
                 );
             
-            //ROTA PARA ECLUIR VEICULO
+            //ROTA PARA EXCLUIR VEICULO
             routes.MapRoute(
                 "VeiculoExcluir ",
                 "Veiculos/Excluir/:id",
@@ -48,7 +64,7 @@ namespace WebRazorCSharp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

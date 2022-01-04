@@ -11,7 +11,15 @@ namespace WebRazorCSharp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["Autorizado"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         public ActionResult Veiculo()
@@ -19,18 +27,34 @@ namespace WebRazorCSharp.Controllers
             ViewBag.Title = "Vende-se";
             ViewBag.Message = "Relação de veículos";
 
-            var lista = Veiculos.GetCarros();
-            ViewBag.Lista = lista;
+            if (Session["Autorizado"] != null)
+            {
+                var lista = Veiculos.GetCarros();
+                ViewBag.Lista = lista;
 
-            return View();
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Title = "Contato";
-            ViewBag.Message = "Web page contatos.";
+            if (Session["Autorizado"] != null)
+            {
+                ViewBag.Title = "Contato";
+                ViewBag.Message = "Web page contatos.";
+                return View();
+            }
+            else
+            {
+                Response.Redirect("/Login/Index");
+                return null;
+            }
 
-            return View();
         }
     }
 }
