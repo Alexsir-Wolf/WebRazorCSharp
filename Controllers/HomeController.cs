@@ -16,9 +16,8 @@ namespace WebRazorCSharp.Controllers
                 return View();
             }
             else
-            {
-                Response.Redirect("/Login/Index");
-                return null;
+            {          
+                return RedirectToAction("Index", "Login");
             }
         }
 
@@ -36,8 +35,7 @@ namespace WebRazorCSharp.Controllers
             }
             else
             {
-                Response.Redirect("/Login/Index");
-                return null;
+                return RedirectToAction("Index", "Login");
             }
         }
 
@@ -51,8 +49,7 @@ namespace WebRazorCSharp.Controllers
             }
             else
             {
-                Response.Redirect("/Login/Index");
-                return null;
+                return RedirectToAction("Index", "Login");
             }
 
         }

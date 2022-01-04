@@ -28,7 +28,7 @@ namespace WebRazorCSharp.Controllers
             if (usuario.Login())
             {
                 Session["Autorizado"] = "OK";
-                Session.Remove("Erro");
+               // Session.Remove("Erro");
                 Response.Redirect("/Home/Index");
             }
             else
