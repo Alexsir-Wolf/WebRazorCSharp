@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
 using System.Data.SqlClient;
 using System.Web.Configuration;
 using System.ComponentModel.DataAnnotations;
+using WebRazorCSharp.Models.Enuns;
 
 namespace WebRazorCSharp.Models
 {
-    public class Veiculos
+    public class Vehicle
     {
         //CONNECTION STRING
         private readonly static string _connection = WebConfigurationManager.ConnectionStrings
@@ -19,31 +19,32 @@ namespace WebRazorCSharp.Models
 
         [Display(Name = "Marca")]
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public string Nome { get; set; }
+        public string Name { get; set; }
+
+        [Display(Name = "Modelo")]
+        [Required(ErrorMessage = "Campo obrigatório.")]
+        public string Model { get; set; }
+
 
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public string Modelo { get; set; }
-
-
-        [Required(ErrorMessage = "Campo obrigatório.")]
-        public short Ano { get; set; }
+        public short Year { get; set; }
 
         [Display(Name = "Ano de Fabricação")]
         [Range (1950, 2022, ErrorMessage = "Ano deve estar entre {1} e {2}")]
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public short Fabricacao { get; set; }
+        public short Manufacturing { get; set; }
 
-
+        [Display(Name = "Cor")]
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public string Cor { get; set; }
+        public string Color { get; set; }
 
-
+        [Display(Name = "Combustível")]
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public byte Combustivel { get; set; }
+        public Fuel Fuel { get; set; }
 
         [Display(Name = "Transmissão")]
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public bool Automatico { get; set; }
+        public int Transmission { get; set; }
 
         [Range(0.01, 999999999.99, ErrorMessage = "O valor não pode ser menor que {1}")]
         [Required(ErrorMessage = "Campo obrigatório.")]
@@ -51,30 +52,28 @@ namespace WebRazorCSharp.Models
 
 
        [Required(ErrorMessage = "Campo obrigatório.")]
-        public bool Ativo { get; set; }
+        public bool Active { get; set; }
 
-        public Veiculos()
+        public Vehicle()
         {
         }
-
-        public Veiculos(int id, string nome, string modelo, short ano, short fabricacao, string cor,
-            byte combustivel, bool automatico, decimal valor, bool ativo)
+        public Vehicle(int id, string name, string model, short year, short manufacturing, string color, Fuel fuel, int transmission, decimal valor, bool active)
         {
             Id = id;
-            Nome = nome;
-            Modelo = modelo;
-            Ano = ano;
-            Fabricacao = fabricacao;
-            Cor = cor;
-            Combustivel = combustivel;
-            Automatico = automatico;
+            Name = name;
+            Model = model;
+            Year = year;
+            Manufacturing = manufacturing;
+            Color = color;
+            Fuel = fuel;
+            Transmission = transmission;
             Valor = valor;
-            Ativo = ativo;
+            Active = active;
         }
 
-        public static List<Veiculos> GetCarros()
+        public static List<Vehicle> GetCars()
         {
-            var listaCarros = new List<Veiculos>();
+            var listaCarros = new List<Vehicle>();
             var sql = "SELECT * FROM tb_Veiculos";
 
             try
@@ -90,15 +89,15 @@ namespace WebRazorCSharp.Models
                             {
                                 while (dr.Read())
                                 {
-                                    listaCarros.Add(new Veiculos(
+                                    listaCarros.Add(new Vehicle(
                                         Convert.ToInt32(dr["Id"]),
                                         dr["Nome"].ToString(),
                                         dr["Modelo"].ToString(),
                                         Convert.ToInt16(dr["Ano"]),
                                         Convert.ToInt16(dr["Fabricacao"]),
                                         dr["Cor"].ToString(),
-                                        Convert.ToByte(dr["Combustivel"]),
-                                        Convert.ToBoolean(dr["Automatico"]),
+                                        (Fuel)Convert.ToByte(dr["Combustivel"]),
+                                        Convert.ToInt16(dr["Automatico"]),
                                         Convert.ToDecimal(dr["Valor"]),
                                         Convert.ToBoolean(dr["Ativo"])
                                         ));
@@ -118,7 +117,7 @@ namespace WebRazorCSharp.Models
 
 
         //SALVAR NOVO VEICULO NO BANCO DE DADOS
-        public void Salvar()
+        public void Save()
         {
             var sql = "";
             if (Id == 0)
@@ -138,15 +137,15 @@ namespace WebRazorCSharp.Models
                     cn.Open();
                     using (var cmd = new SqlCommand(sql, cn))
                     {
-                        cmd.Parameters.AddWithValue("@nome", Nome);
-                        cmd.Parameters.AddWithValue("@Modelo", Modelo);
-                        cmd.Parameters.AddWithValue("@ano", Fabricacao);
-                        cmd.Parameters.AddWithValue("@fabricacao", Fabricacao);
-                        cmd.Parameters.AddWithValue("@cor", Cor);
-                        cmd.Parameters.AddWithValue("@combustivel", Combustivel);
-                        cmd.Parameters.AddWithValue("@automatico", Automatico);
+                        cmd.Parameters.AddWithValue("@nome", Name);
+                        cmd.Parameters.AddWithValue("@Modelo", Model);
+                        cmd.Parameters.AddWithValue("@ano", Manufacturing);
+                        cmd.Parameters.AddWithValue("@fabricacao", Manufacturing);
+                        cmd.Parameters.AddWithValue("@cor", Color);
+                        cmd.Parameters.AddWithValue("@combustivel", Fuel);
+                        cmd.Parameters.AddWithValue("@automatico", Transmission);
                         cmd.Parameters.AddWithValue("@valor", Valor);
-                        cmd.Parameters.AddWithValue("@ativo", Ativo);
+                        cmd.Parameters.AddWithValue("@ativo", Active);
 
                         cmd.ExecuteNonQuery();
                     }
@@ -160,7 +159,7 @@ namespace WebRazorCSharp.Models
         }
 
         // DELETAR VEICULO NO BANCO DE DADOS
-        public void Excluir()
+        public void Delete()
         {
             var sql = "DELETE FROM tb_Veiculos WHERE id=" + Id;
 
@@ -185,7 +184,7 @@ namespace WebRazorCSharp.Models
 
 
         // RETORNA DADOS NA PAGINA DE EDIÇÃO
-        public void GetVeiculo(int id)
+        public void GetVehicle(int id)
         {
             var sql = "SELECT nome, modelo, ano, fabricacao, cor, combustivel, automatico, " +
                 "valor, ativo FROM tb_Veiculos WHERE id=" + id;
@@ -204,15 +203,15 @@ namespace WebRazorCSharp.Models
                                 if (dr.Read())
                                 {
                                     Id = id;
-                                    Nome = dr["nome"].ToString();
-                                    Modelo = dr["modelo"].ToString();
-                                    Ano = Convert.ToInt16(dr["ano"]);
-                                    Fabricacao = Convert.ToInt16(dr["fabricacao"]);
-                                    Cor = dr["cor"].ToString();
-                                    Combustivel = Convert.ToByte(dr["combustivel"]);
-                                    Automatico = Convert.ToBoolean(dr["automatico"]);
+                                    Name = dr["nome"].ToString();
+                                    Model = dr["modelo"].ToString();
+                                    Year = Convert.ToInt16(dr["ano"]);
+                                    Manufacturing = Convert.ToInt16(dr["fabricacao"]);
+                                    Color = dr["cor"].ToString();
+                                    Fuel = (Fuel)Convert.ToByte(dr["combustivel"]);
+                                    Transmission = Convert.ToInt16(dr["automatico"]);
                                     Valor = Convert.ToDecimal(dr["valor"]);
-                                    Ativo = Convert.ToBoolean(dr["ativo"]);
+                                    Active = Convert.ToBoolean(dr["ativo"]);
 
                                 }
                             }
@@ -222,7 +221,7 @@ namespace WebRazorCSharp.Models
             }
             catch(Exception erro)
             {
-                Nome = "Falha: " + erro.Message;
+                Name = "Falha: " + erro.Message;
                 Console.WriteLine("Falha: " + erro.Message);
             }
         }

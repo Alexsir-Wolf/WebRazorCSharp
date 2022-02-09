@@ -1,0 +1,39 @@
+﻿@model WebRazorCSharp.Models.User
+
+<h2 class="text-center">@ViewBag.Message</h2>
+
+
+@using (Html.BeginForm("Save", "User", FormMethod.Post, new { id = "formNewUser", name = "formNewUser" }))
+{
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Name, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Name, new { @class = "form-control", @placeholder = "Nome" })
+            @Html.ValidationMessageFor(v => v.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Email, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Email, new { @class = "form-control", @placeholder = "Email@email.com" })
+            @Html.ValidationMessageFor(v => v.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Password, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.PasswordFor(v => v.Password, new { @class = "form-control", @placeholder = "Senha" })
+            @Html.ValidationMessageFor(v => v.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <br />
+    <div class="button text-center">
+        <button class="btn btn-success " type="submit">Salvar</button>
+    </div>
+}
+
+

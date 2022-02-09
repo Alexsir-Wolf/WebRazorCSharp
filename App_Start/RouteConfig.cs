@@ -17,47 +17,47 @@ namespace WebRazorCSharp
             //ROTA PARA SALVAR VEICULOS NO BANCO DE DADOS
             routes.MapRoute(
                 "VeiculoAdicionar",
-                "veiculos/adicionar",
-                new { controller = "Veiculos", action = "Adicionar" }
+                "Vehicles/Save",
+                new { controller = "Vehicles", action = "Save" }
                 );      
 
 
             //ROTA PARA SALVAR USUARIOS NO BANCO DE DADOS
             routes.MapRoute(
                 "UsuarioSalvar",
-                "Login/adicionar",
-                new { controller = "Usuario", action = "Salvar" }
+                "Login/NewUser",
+                new { controller = "User", action = "Save" }
                 );    
             
             
             //ROTA PARA SALVAR USUARIOS NO BANCO DE DADOS
             routes.MapRoute(
                 "UsuarioAdicionar",
-                "Usuario/Salvar",
-                new { controller = "Usuario", action = "Salvar" }
+                "User/Save",
+                new { controller = "User", action = "Save" }
                 );
 
 
-            //ROTA PARA ALTERAR VEICULO
+            //ROTA PARA EDITAR VEICULO
             routes.MapRoute(
                 "VeiculoEditar",
-                "Veiculos/Alterar/:id",
-                new { controller = "Veiculos", action = "Alterar", id = 0 }
+                "Vehicles/Edit/:id",
+                new { controller = "Vehicles", action = "Edit", id = 0 }
                 );
             
             //ROTA PARA EXCLUIR VEICULO
             routes.MapRoute(
-                "VeiculoExcluir ",
-                "Veiculos/Excluir/:id",
-                new { controller = "Veiculos", action = "Excluir", id = 0 }
+                "VeiculoExcluir",
+                "Vehicles/Delete/:id",
+                new { controller = "Vehicles", action = "Delete", id = 0 }
                 );
 
 
             //ROTA PARA PAGINA VEICULOS
             routes.MapRoute(
                 "VeiculosHome",
-                "Veiculos",
-                new { controller = "Veiculos", action = "Veiculos" }
+                "Vehicles",
+                new { controller = "Vehicles", action = "Vehicle" }
                 );  
 
             //ROTA PADRÃO, SEMPRE POR ULTIMO

@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace WebRazorCSharp.Controllers
 {
-    public class SairController : Controller
+    public class ExitController : Controller
     {
         // GET: Sair
-        public ActionResult FinalizarSessao()
+        public ActionResult Exit()
         {
             Session.Abandon();
             return RedirectToAction("Index", "Login");

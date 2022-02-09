@@ -1,0 +1,70 @@
+﻿@model WebRazorCSharp.Models.Vehicle
+
+@{
+    var Vehicle = ViewBag.vehicle;
+}
+
+<h2 class="text-center">@ViewBag.Message</h2>
+
+
+<form action="/Vehicles/delete" method="post">
+    <div class="row col-md-offset-3">
+        <input type="hidden" id="id" name="id" value="@Vehicle.Id" />
+        @Html.LabelFor(v => v.Name, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Name, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Name })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Model, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Model, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Model })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Manufacturing, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Manufacturing, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Manufacturing })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Color, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Color, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Color })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Fuel, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Fuel, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Fuel })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Transmission, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Transmission, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Transmission })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Valor, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Valor, new { @class = "form-control", @readonly = "true", @Value = Vehicle.Valor.ToString("#0.00") })
+        </div>
+    </div>
+</form>
+
+<br />
+<div class="button text-center">
+    <button class="btn btn-danger " type="submit">Excluir</button>
+</div>
+
+
+
+
+

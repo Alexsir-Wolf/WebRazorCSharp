@@ -8,7 +8,7 @@ using System.Web.Configuration;
 
 namespace WebRazorCSharp.Models
 {
-    public class Usuario
+    public class User
     {   
         //CONNECTION STRING
         private readonly static string _connection = WebConfigurationManager.ConnectionStrings
@@ -20,21 +20,21 @@ namespace WebRazorCSharp.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public string Nome { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Campo obrigatório.")]
-        public string Senha { get; set; }
+        public string Password { get; set; }
 
-        public Usuario()
+        public User()
         {
         }
 
-        public Usuario(int id, string email, string nome, string senha)
+        public User(int id, string email, string name, string password)
         {
             Id = id;
             Email = email;
-            Nome = nome;
-            Senha = senha;
+            Name = name;
+            Password = password;
         }
 
         public bool Login()
@@ -55,10 +55,10 @@ namespace WebRazorCSharp.Models
                             {
                                 if (dr.Read())
                                 {
-                                    if (this.Senha == dr["SENHA"].ToString())
+                                    if (this.Password == dr["SENHA"].ToString())
                                     {
                                         this.Id = Convert.ToInt32(dr["ID"]);
-                                        this.Nome = dr["NOME"].ToString();
+                                        this.Name = dr["NOME"].ToString();
                                         result = true;
                                     }
                                 }
@@ -77,7 +77,7 @@ namespace WebRazorCSharp.Models
 
 
         //SALVAR NOVO USUARIO NO BANCO DE DADOS
-        public void Salvar()
+        public void Save()
         {
             var sql = "INSERT INTO USUARIOS (NOME, EMAIL, SENHA) " +
                      "VALUES (@NOME, @EMAIL, @SENHA)";            
@@ -88,9 +88,9 @@ namespace WebRazorCSharp.Models
                     cn.Open();
                     using (var cmd = new SqlCommand(sql, cn))
                     {
-                        cmd.Parameters.AddWithValue("@NOME", Nome);
+                        cmd.Parameters.AddWithValue("@NOME", Name);
                         cmd.Parameters.AddWithValue("@EMAIL", Email);
-                        cmd.Parameters.AddWithValue("@SENHA", Senha);
+                        cmd.Parameters.AddWithValue("@SENHA", Password);
 
                         cmd.ExecuteNonQuery();
                     }

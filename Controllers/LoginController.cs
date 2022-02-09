@@ -19,11 +19,11 @@ namespace WebRazorCSharp.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChecarLogin()
+        public ActionResult LoginCheck()
         {
-            var usuario = new Usuario();
+            var usuario = new User();
             usuario.Email = Request["EMAIL"];
-            usuario.Senha = Request["PassWord"];
+            usuario.Password = Request["PassWord"];
 
             if (usuario.Login())
             {

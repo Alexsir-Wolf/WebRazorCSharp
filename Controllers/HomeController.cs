@@ -21,14 +21,14 @@ namespace WebRazorCSharp.Controllers
             }
         }
 
-        public ActionResult Veiculo()
+        public ActionResult Vehicles()
         {
             ViewBag.Title = "Vende-se";
             ViewBag.Message = "Relação de veículos";
 
             if (Session["Autorizado"] != null)
             {
-                var lista = Veiculos.GetCarros();
+                var lista = Vehicle.GetCars();
                 ViewBag.Lista = lista;
 
                 return View();

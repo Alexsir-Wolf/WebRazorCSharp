@@ -1,0 +1,75 @@
+﻿@model WebRazorCSharp.Models.Vehicle
+@using WebRazorCSharp.Models.Enuns
+@using WebRazorCSharp.Models
+
+
+<h2 class="text-center">@ViewBag.Message</h2>
+
+
+<form action="/Vehicles/save" method="post">
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Name, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Model, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Model, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Model, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Manufacturing, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Manufacturing, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Manufacturing, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Color, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Color, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Color, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Fuel, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.DropDownListFor(Model => Model.Fuel, Fuel.Diesel.ToSelectList(),
+           "Selecione um tipo de combustivel", new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Fuel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Transmission, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.DropDownListFor(Model => Model.Transmission, Transmission.Manual.ToSelectList(),
+           "Selecione o tipo de transmissão", new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Transmission, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row col-md-offset-3">
+        @Html.LabelFor(v => v.Valor, new { @class = "col-sm-2 col-form-label text-right" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(v => v.Valor, new { @class = "form-control" })
+            @Html.ValidationMessageFor(v => v.Valor, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+
+    <div class="buttonSave text-center">
+        <button class="btn btn-success " type="submit">Salvar</button>
+    </div>
+</form>
+
+
+
